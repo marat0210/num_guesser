@@ -108,31 +108,36 @@ def create_password():
 
 
 """Making a game. User can play it if he logs in into his account."""
-def num_guesser():
+ def num_guesser():
     """Guess the number in a given range."""
     x = int(input("Type the starting number: "))
     y = int(input("Type the ending number: "))
     num = int(input("Type the number from between the range of x, y and I'll try to guess it: "))
-    if num >= x and num <= y:
-        while True:
-            print("Trying to guess the number...")
-            tryings = 1    #creating variabl tryings, that will show how many attempts it took o guess the number
-            break
-            while num != num_guess:
-                num_guess = random.randint(x, y)
-                tryings += 1
-                if num == num_guess:
-                    print("I guessed the number: " + num_guess)
-                    print("It took me " + tryings + " attempts to do this.")
-                    break
-    elif num < x or num > y:
-        while True:
-            print("Error. Make sure you have read the instructions right.")
-            try_again = input("Do you want to try again?: ")
-            if try_again == 'yes':
-                while True:
-                    num_guesser()
-
+    num_guesser = random.randint(x, y)
+    while num >= x and num <= y:
+        tryings = 1
+        while num_guesser != num:
+            num_guesser = random.randint(x, y)  
+            tryings += 1
+            if num_guesser == num:
+                print("The number is " + str(num_guesser))
+                print("The amount of attempts: " + str(tryings))
+                break
+    while num < x or num > y:
+        print("Seems that you've made a mistake. Try again...")
+        x = int(input("Type the starting number: "))
+        y = int(input("Type the ending number: "))
+        num = int(input("Type the number from between the range of x, y and I'll try to guess it: "))
+        num_guesser = random.randint(x, y)
+        tryings = 1
+        while num_guesser != num:
+            num_guesser = random.randint(x, y)  
+            tryings += 1
+            if num_guesser == num:
+                print("The number is " + str(num_guesser))
+                print("The amount of attempts: " + str(tryings))
+                break
+        
 
 
 
